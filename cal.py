@@ -29,6 +29,7 @@ def Calculate_trig_function(angle, function):
     
     
 print("Select operation:")
+
 print("A. Add")
 print("S. Subtract")
 print("M. Multiply")
@@ -36,6 +37,7 @@ print("D. Divide")
 print("T. Trigonometric Functions")
 
 choice = input("Enter choice (A/S/M/D/T): ")
+#Basic calculator operations
 
 if choice in ('A', 'S', 'M', 'D'):
     num1 = float(input("Enter first number: "))
@@ -53,6 +55,8 @@ if choice in ('A', 'S', 'M', 'D'):
     elif choice == 'D':
         print(f"{num1} / {num2} = {divide(num1, num2)}")
 
+# Trignometric function operations
+
 else: 
     print("Trignometric function selected.")
 
@@ -67,4 +71,3 @@ if choice in ('T'):
         
     except ValueError as e:
         print(f"Error: {e}")
-        
