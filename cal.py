@@ -37,6 +37,7 @@ print("D. Divide")
 print("T. Trigonometric Functions")
 
 choice = input("Enter choice (A/S/M/D/T): ")
+
 #Basic calculator operations
 
 if choice in ('A', 'S', 'M', 'D'):
