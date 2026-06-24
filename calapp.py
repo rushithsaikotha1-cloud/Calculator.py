@@ -139,3 +139,4 @@ def Calculate_trig_function(angle, function):
         
     except ValueError as e:
         print(f"Error: {e}")
+        
