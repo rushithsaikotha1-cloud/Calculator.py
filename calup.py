@@ -15,10 +15,25 @@ def clear():
 
 def calculate():
     try:
-        result = eval(entry.get())
+        expression = entry.get()
+
+        result = eval(
+            expression,
+            {
+                "__builtins__": None,
+                "sin": lambda x: math.sin(math.radians(x)),
+                "cos": lambda x: math.cos(math.radians(x)),
+                "tan": lambda x: math.tan(math.radians(x)),
+                "sqrt": math.sqrt,
+                "log": math.log10,
+                "pi": math.pi,
+            }
+        )
+
         entry.delete(0, tk.END)
-        entry.insert(0, result)
-    except Exception as e:
+        entry.insert(0, round(result, 6))
+
+    except Exception:
         entry.delete(0, tk.END)
         entry.insert(0, "Error")
 
@@ -134,7 +149,7 @@ for button in buttons:
 
 # ---------------- SCIENTIFIC BUTTONS ---------------- #
 
-frame = tk.Frame(root, bg="#1e1e1e")
+frame = tk.Frame(root, bg="#201f1f")
 trig_frame = tk.Frame(root, bg="#1e1e1e")
 trig_frame.pack(pady=10)
 
@@ -228,6 +243,19 @@ def backspace():
  
 tk.Button(
     trig_frame,
+    text="π",
+    width=8,
+    font=("Arial", 12),
+    bg="#333333", 
+    fg="white",
+    activebackground="#555555",
+    activeforeground="white", 
+    command=lambda: click("pi")
+).grid(row=2, column=2, pady=5)
+
+
+tk.Button(
+    trig_frame,
     text="⌫",
     width=8,
     font=("Arial", 12),
@@ -242,6 +270,11 @@ tk.Button(
     trig_frame,
     text="(",
     width=8,
+    font=("Arial", 12),
+    bg="#333333",
+    fg="white",
+    activebackground="#555555",
+    activeforeground="white",
     command=lambda: click("(")
 ).grid(row=3, column=0)
 
@@ -249,8 +282,14 @@ tk.Button(
     trig_frame,
     text=")",
     width=8,
+    font=("Arial", 12),
+    bg="#333333",
+    fg="white",     
+    activebackground="#555555",
+    activeforeground="white",
     command=lambda: click(")")
 ).grid(row=3, column=1)
+
 
 # ---------------- KEYBOARD BINDINGS ---------------- #
 
